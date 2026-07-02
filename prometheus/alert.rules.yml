@@ -1,0 +1,24 @@
+groups:
+  - name: twamp_alerts
+    rules:
+      # 1. Традиционный алерт: Скрипт работает, но конкретный роутер перестал отвечать на UDP-запросы
+      # 1. Traditional alert: The script is running, but a specific router has stopped responding to UDP requests.
+      - alert: RouterDownTWAMP
+        expr: cisco_twamp_rtt_ms == 0
+        for: 5s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Потеряна связь с роутером!"
+          description: "Устройство {{ $labels.device }} не отвечает на TWAMP Light запросы (RTT = 0)."
+
+      # 2. Индивидуальный алерт: Полностью пропал сбор данных с конкретного IP-адреса (упал опрос или таргет)
+      # 2. Individual alert: Data collection from a specific IP address has completely disappeared (the survey or target has crashed)
+      - alert: RouterMetricsMissing
+        expr: up{job="cisco-twamp-routers"} == 0
+        for: 5s
+        labels:
+          severity: warning
+        annotations:
+          summary: "Пропал сбор метрик!"
+          description: "Prometheus потерял доступ к опросу хоста {{ $labels.device }}."

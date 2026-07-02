@@ -1,0 +1,39 @@
+global:
+  scrape_interval: 2s
+
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ['127.0.0.1:9093']
+
+rule_files:
+  - "alert.rules.yml"
+
+scrape_configs:
+  - job_name: 'cisco-twamp-routers'
+    metrics_path: /probe
+    static_configs:                     # Укажите ipv4 адреса ваших маршрутизаторов
+                                        # Specify the IPv4 addresses of your routers
+      - targets: [ '10.10.10.x' ]
+        labels:
+          router_name: 'RTR-HOSTNAME-1_XE'
+          
+      - targets: [ '10.10.10.x' ]
+        labels:
+          router_name: 'RTR-HOSTNAME-2_XR'
+
+    relabel_configs:
+      # 1. Передаем IP в скрипт
+      # 1. Pass the IP to the script
+      - source_labels: [__address__]
+        target_label: __param_target
+      # 2. СКЛЕИВАЕМ ФОРМАТ "Имя : IP" в одну метку device
+      # 2. CONCLUDE THE "Name: IP" FORMAT INTO A SINGLE TEXT "device"
+      - source_labels: [router_name, __address__]
+        separator: ' : '
+        target_label: device
+      # 3. Перенаправляем на скрипт
+      # 3. Redirect to the script
+      - target_label: __address__
+        replacement: '127.0.0.1:9853'

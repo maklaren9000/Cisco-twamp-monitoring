@@ -1,0 +1,36 @@
+services:
+  twamp-exporter:
+    build: ./twamp-exporter
+    network_mode: "host"
+    restart: always
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      # --- DATA RETENTION ---
+      - '--storage.tsdb.retention.time=30d'
+      - '--storage.tsdb.retention.size=10GB'
+    network_mode: "host"
+    restart: always
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    volumes:
+      - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
+    network_mode: "host"
+    restart: always
+
+  grafana:
+    image: grafana/grafana:latest
+    user: "0:0"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana-data:/var/lib/grafana
+    restart: always
