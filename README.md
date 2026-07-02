@@ -19,10 +19,12 @@ The entire stack is containerized and managed via **Docker Compose**, allowing y
 * **Grafana** — Visualizes RTT latency graphs and provides a dedicated "Status Wall" dashboard for NOC/Helpdesk teams.
 
 ### 📊 Dashboard Preview
+Dashboard as graphs:
 ![alt text](image.png)
-
+Dasboard as table:
 ![alt text](image-1.png)
 
+verification:
 ![alt text](image-2.png)
 
 
@@ -96,10 +98,12 @@ performance-measurement
 * **Grafana** — визуализирует графики задержек (RTT ms) и выводит интерактивную панель статусов (Status Wall) `ONLINE / DOWN` для дежурной смены (NOC).
 
 ### 📊 Скриншоты системы
+Дашборд как график:
 ![alt text](image.png)
-
+Дашборд как таблица:
 ![alt text](image-1.png)
 
+Верификация:
 ![alt text](image-2.png)
 
 ### 🚀 Быстрый запуск через Docker Compose
