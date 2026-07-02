@@ -52,6 +52,11 @@ Verification:
    docker compose up -d --build
    ```
 
+#### 💡 How to set up dashboards in Grafana (Important):
+1. **Units**: In the right-hand settings panel (Standard options -> Units), select `Time` -> `Milliseconds (ms)` to display the graph scale in milliseconds.
+2. **Status Wall**: To display the ONLINE/DOWN table, use the `up{job="cisco-twamp-routers"}` query in *Instant* mode.
+3. In the table settings (Value mappings), set the replacement rules: replace the value `1` with the text `ONLINE` (green), and the value `0` with `DOWN` (red).
+
 ### 🔒 Reliability & Storage Limits
 * **Disk Protection:** Prometheus TSDB is restricted to `30d` retention or a maximum size of `10GB` to avoid filling up host storage.
 * **Data Persistence:** Grafana configuration and dashboards are stored in a persistent Docker volume (`./grafana-data`), securing your work against container restarts.
@@ -137,6 +142,11 @@ performance-measurement
 * **Grafana** доступна по адресу: `http://localhost:3000`
 * **Prometheus** доступна по адресу: `http://localhost:9090`
 * **Умные уведомления**: При падении конкретного линка в Telegram-канал мгновенно прилетает раздельный красивый алерт с именем пострадавшего устройства и временем в формате UTC.
+
+#### 💡 Как настроить панели в Grafana (Важно):
+1. **Единицы измерения**: В правой панели настроек (Standard options -> Unit) выберите `Time` -> `Milliseconds (ms)`, чтобы шкала графика отображалась в миллисекундах.
+2. **Таблица статусов (Status Wall)**: Для вывода таблицы ONLINE/DOWN используйте запрос `up{job="cisco-twamp-routers"}` в режиме *Instant*. 
+3. В настройках таблицы (Value mappings) задайте правила замены: значение `1` менять на текст `ONLINE` (зеленый цвет), значение `0` — на `DOWN` (красный цвет).
 
 ### 🔒 Безопасность и Дисковые лимиты
 * **Защита диска:** База данных Prometheus защищена от переполнения параметрами хранения истории (`retention.time=30d`, `retention.size=10GB`).
