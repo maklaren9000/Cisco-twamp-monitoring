@@ -111,7 +111,7 @@ performance-measurement
 1. **Клонируйте репозиторий:**
    ```bash
    git clone https://github.com/maklaren9000/Cisco-twamp-monitoring
-   cd Cisco-twamp-monitoring
+   cd Cisco-twamp-monitoring-main
    ```
 
 2. **Настройте уведомления в Telegram:**
