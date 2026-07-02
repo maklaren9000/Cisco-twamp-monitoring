@@ -20,12 +20,14 @@ The entire stack is containerized and managed via **Docker Compose**, allowing y
 
 ### 📊 Dashboard Preview
 Dashboard as graphs:
-![alt text](image.png)
-Dasboard as table:
-![alt text](image-1.png)
+![Dashboard as graphs](image.png)
 
-verification:
-![alt text](image-2.png)
+Dashboard as table:
+![Dashboard as table](image-1.png)
+
+Verification:
+
+![Verification](image-2.png)
 
 
 ### 🚀 Quick Start with Docker Compose
@@ -99,12 +101,15 @@ performance-measurement
 
 ### 📊 Скриншоты системы
 Дашборд как график:
-![alt text](image.png)
+![Дашборд как график](image.png)
+
 Дашборд как таблица:
-![alt text](image-1.png)
+![Дашборд как таблица](image-1.png)
 
 Верификация:
-![alt text](image-2.png)
+
+![Верификация](image-2.png)
+
 
 ### 🚀 Быстрый запуск через Docker Compose
 
